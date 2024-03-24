@@ -4,6 +4,9 @@ use serde::{Deserialize, Serialize};
 /// Description of a Transaction, pending or in the chain.
 #[derive(Debug, Default, Clone, PartialEq, Deserialize, Serialize)]
 pub struct Transaction {
+    /// Chain Id. None for legacy tx
+    #[serde(rename = "chainId")]
+    pub chain_id: Option<U64>,
     /// Hash
     pub hash: H256,
     /// Nonce
