@@ -91,7 +91,7 @@ impl<'de> Deserialize<'de> for SyncState {
                 } else {
                     Err(D::Error::custom("expected object or `false`, got `true`"))
                 }
-            }
+            },
         }
     }
 }

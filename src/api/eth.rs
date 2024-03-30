@@ -129,11 +129,11 @@ impl<T: Transport> Eth<T> {
             BlockId::Hash(hash) => {
                 let hash = helpers::serialize(&hash);
                 self.transport.execute("eth_getBlockByHash", vec![hash, include_txs])
-            }
+            },
             BlockId::Number(num) => {
                 let num = helpers::serialize(&num);
                 self.transport.execute("eth_getBlockByNumber", vec![num, include_txs])
-            }
+            },
         };
 
         CallFuture::new(result)
@@ -147,11 +147,11 @@ impl<T: Transport> Eth<T> {
             BlockId::Hash(hash) => {
                 let hash = helpers::serialize(&hash);
                 self.transport.execute("eth_getBlockByHash", vec![hash, include_txs])
-            }
+            },
             BlockId::Number(num) => {
                 let num = helpers::serialize(&num);
                 self.transport.execute("eth_getBlockByNumber", vec![num, include_txs])
-            }
+            },
         };
 
         CallFuture::new(result)
@@ -163,12 +163,12 @@ impl<T: Transport> Eth<T> {
             BlockId::Hash(hash) => {
                 let hash = helpers::serialize(&hash);
                 self.transport.execute("eth_getBlockTransactionCountByHash", vec![hash])
-            }
+            },
             BlockId::Number(num) => {
                 let num = helpers::serialize(&num);
                 self.transport
                     .execute("eth_getBlockTransactionCountByNumber", vec![num])
-            }
+            },
         };
 
         CallFuture::new(result)
@@ -222,19 +222,19 @@ impl<T: Transport> Eth<T> {
             TransactionId::Hash(hash) => {
                 let hash = helpers::serialize(&hash);
                 self.transport.execute("eth_getTransactionByHash", vec![hash])
-            }
+            },
             TransactionId::Block(BlockId::Hash(hash), index) => {
                 let hash = helpers::serialize(&hash);
                 let idx = helpers::serialize(&index);
                 self.transport
                     .execute("eth_getTransactionByBlockHashAndIndex", vec![hash, idx])
-            }
+            },
             TransactionId::Block(BlockId::Number(number), index) => {
                 let number = helpers::serialize(&number);
                 let idx = helpers::serialize(&index);
                 self.transport
                     .execute("eth_getTransactionByBlockNumberAndIndex", vec![number, idx])
-            }
+            },
         };
 
         CallFuture::new(result)
@@ -268,12 +268,12 @@ impl<T: Transport> Eth<T> {
                 let hash = helpers::serialize(&hash);
                 self.transport
                     .execute("eth_getUncleByBlockHashAndIndex", vec![hash, index])
-            }
+            },
             BlockId::Number(num) => {
                 let num = helpers::serialize(&num);
                 self.transport
                     .execute("eth_getUncleByBlockNumberAndIndex", vec![num, index])
-            }
+            },
         };
 
         CallFuture::new(result)
@@ -285,11 +285,11 @@ impl<T: Transport> Eth<T> {
             BlockId::Hash(hash) => {
                 let hash = helpers::serialize(&hash);
                 self.transport.execute("eth_getUncleCountByBlockHash", vec![hash])
-            }
+            },
             BlockId::Number(num) => {
                 let num = helpers::serialize(&num);
                 self.transport.execute("eth_getUncleCountByBlockNumber", vec![num])
-            }
+            },
         };
 
         CallFuture::new(result)

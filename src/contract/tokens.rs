@@ -183,7 +183,7 @@ impl Tokenizable for H256 {
                     data[idx] = val;
                 }
                 Ok(data.into())
-            }
+            },
             other => Err(Error::InvalidOutputType(format!("Expected `H256`, got {:?}", other))),
         }
     }
@@ -306,7 +306,7 @@ impl Tokenizable for BytesArray {
                     .map(Tokenizable::from_token)
                     .collect::<Result<Vec<u8>, Error>>()?;
                 Ok(Self(bytes))
-            }
+            },
             other => Err(Error::InvalidOutputType(format!("Expected `Array`, got {:?}", other))),
         }
     }
@@ -334,7 +334,7 @@ impl<T: TokenizableItem> Tokenizable for Vec<T> {
         match token {
             Token::FixedArray(tokens) | Token::Array(tokens) => {
                 tokens.into_iter().map(Tokenizable::from_token).collect()
-            }
+            },
             other => Err(Error::InvalidOutputType(format!("Expected `Array`, got {:?}", other))),
         }
     }
@@ -363,7 +363,7 @@ macro_rules! impl_fixed_types {
                         let mut arr = [0; $num];
                         arr.copy_from_slice(&bytes);
                         Ok(arr)
-                    }
+                    },
                     other => Err(
                         Error::InvalidOutputType(format!("Expected `FixedBytes({})`, got {:?}", $num, other)).into(),
                     ),
@@ -399,7 +399,7 @@ macro_rules! impl_fixed_types {
                             Ok(arr) => Ok(arr),
                             Err(_) => panic!("All elements inserted so the array is full; qed"),
                         }
-                    }
+                    },
                     other => Err(
                         Error::InvalidOutputType(format!("Expected `FixedArray({})`, got {:?}", $num, other)).into(),
                     ),

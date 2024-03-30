@@ -47,7 +47,7 @@ impl Log {
                 if val_log_type == "removed" {
                     return true;
                 }
-            }
+            },
             None => (),
         }
         false
