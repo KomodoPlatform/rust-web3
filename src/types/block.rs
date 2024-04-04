@@ -195,7 +195,7 @@ impl Serialize for BlockId {
                 let mut s = serializer.serialize_struct("BlockIdEip1898", 1)?;
                 s.serialize_field("blockHash", &format!("{:?}", x))?;
                 s.end()
-            }
+            },
             BlockId::Number(ref num) => num.serialize(serializer),
         }
     }

@@ -125,7 +125,7 @@ impl futures::Future for SingleResponse {
             Ok(ref mut rx) => {
                 let output = ready!(futures::Future::poll(Pin::new(rx), cx))?;
                 Poll::Ready(helpers::to_result_from_output(output))
-            }
+            },
         }
     }
 }
@@ -147,7 +147,7 @@ impl futures::Future for BatchResponse {
                     .collect();
 
                 Poll::Ready(Ok(values))
-            }
+            },
         }
     }
 }
@@ -313,7 +313,7 @@ fn respond_output(
         _ => {
             log::warn!("Got unsupported response (id: {:?})", id);
             return Err(());
-        }
+        },
     };
 
     let response_tx = pending_response_txs.remove(&id).ok_or_else(|| {

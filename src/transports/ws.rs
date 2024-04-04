@@ -109,7 +109,7 @@ impl WsServerTask {
                     "Wrong scheme: {}",
                     s
                 ))))
-            }
+            },
         };
 
         let host = match url.host_str() {
@@ -118,7 +118,7 @@ impl WsServerTask {
                 return Err(error::Error::Transport(TransportError::Message(
                     "Wrong host name".to_string(),
                 )))
-            }
+            },
         };
 
         let port = url.port().unwrap_or(if scheme == "ws" { 80 } else { 443 });
@@ -176,10 +176,10 @@ impl WsServerTask {
             ServerResponse::Accepted { .. } => client.into_builder().finish(),
             ServerResponse::Redirect { status_code, .. } => {
                 return Err(error::Error::Transport(TransportError::Code(status_code)))
-            }
+            },
             ServerResponse::Rejected { status_code } => {
                 return Err(error::Error::Transport(TransportError::Code(status_code)))
-            }
+            },
         };
 
         Ok(Self {
@@ -418,11 +418,11 @@ where
                 ResponseState::Receiver(ref mut res) => {
                     let receiver = res.take().expect("Receiver state is active only once; qed")?;
                     self.state = ResponseState::Waiting(receiver)
-                }
+                },
                 ResponseState::Waiting(ref mut future) => {
                     let response = ready!(future.poll_unpin(cx)).map_err(dropped_err)?;
                     return Poll::Ready((self.extract)(response));
-                }
+                },
             }
         }
     }
@@ -518,7 +518,7 @@ pub mod compat {
 
     /// Create new TcpStream object.
     pub async fn raw_tcp_stream(addrs: String) -> io::Result<tokio::net::TcpStream> {
-        Ok(tokio::net::TcpStream::connect(addrs).await?)
+        tokio::net::TcpStream::connect(addrs).await
     }
 
     /// Wrap given argument into compatibility layer.
@@ -591,7 +591,7 @@ mod tests {
                             .await
                             .unwrap();
                         sender.flush().await.unwrap();
-                    }
+                    },
                     Err(soketto::connection::Error::Closed) => break,
                     e => panic!("Unexpected data: {:?}", e),
                 }

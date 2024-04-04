@@ -52,10 +52,10 @@ impl Eip1193 {
                             if let Err(err) = sink.unbounded_send(evt.data.result) {
                                 log::error!("Error sending notification: {}", err)
                             }
-                        }
+                        },
                         None => log::warn!("Got message for non-existent subscription {}", evt.data.subscription),
                     }
-                }
+                },
                 other => log::warn!("Got unknown notification type: {}", other),
             }
         }) as Box<dyn FnMut(JsValue)>);
@@ -187,7 +187,7 @@ impl Transport for Eip1193 {
                     })
                     .await
                 })
-            }
+            },
             _ => panic!("Can't send JSON-RPC requests other than method calls with EIP-1193 transport!"),
         }
     }

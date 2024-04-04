@@ -32,7 +32,7 @@ impl Transport for TestTransport {
             None => {
                 println!("Unexpected request (id: {:?}): {:?}", id, request);
                 Err(Error::Unreachable)
-            }
+            },
         })
         .boxed()
     }

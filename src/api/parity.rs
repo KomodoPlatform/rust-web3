@@ -74,7 +74,7 @@ mod tests {
     "condition": {
     "block": 1
     },
-    "chainId": 1,
+    "chainId": "0x1",
     "nonce": "0x5",
     "publicKey": "0x96157302dade55a1178581333e57d60ffe6fdf5a99607890456a578b4e6b60e335037d61ed58aa4180f9fd747dc50d44a7924aa026acbfb988b5062b629d6c36",
     "r": "0x92e8beb19af2bad0511d516a86e77fa73004c0811b2173657a55797bdf8558e1",

@@ -86,7 +86,7 @@ mod accounts_signing {
             let gas_price = match tx.transaction_type {
                 Some(tx_type) if tx_type == U64::from(EIP1559_TX_ID) && tx.max_fee_per_gas.is_some() => {
                     tx.max_fee_per_gas
-                }
+                },
                 _ => tx.gas_price,
             };
 
@@ -101,7 +101,7 @@ mod accounts_signing {
             let max_priority_fee_per_gas = match tx.transaction_type {
                 Some(tx_type) if tx_type == U64::from(EIP1559_TX_ID) => {
                     tx.max_priority_fee_per_gas.unwrap_or(gas_price)
-                }
+                },
                 _ => gas_price,
             };
 
@@ -301,23 +301,23 @@ mod accounts_signing {
                 Some(LEGACY_TX_ID) | None => {
                     let stream = self.encode_legacy(chain_id, signature);
                     stream.out().to_vec()
-                }
+                },
 
                 Some(ACCESSLISTS_TX_ID) => {
                     let tx_id: u8 = ACCESSLISTS_TX_ID as u8;
                     let stream = self.encode_access_list_payload(chain_id, signature);
                     [&[tx_id], stream.as_raw()].concat()
-                }
+                },
 
                 Some(EIP1559_TX_ID) => {
                     let tx_id: u8 = EIP1559_TX_ID as u8;
                     let stream = self.encode_eip1559_payload(chain_id, signature);
                     [&[tx_id], stream.as_raw()].concat()
-                }
+                },
 
                 _ => {
                     panic!("Unsupported transaction type");
-                }
+                },
             }
         }
 
